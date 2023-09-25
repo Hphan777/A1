@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 
 
+
 public class ArrayMethodsTest {
 
     @Test
@@ -24,32 +25,45 @@ public class ArrayMethodsTest {
     @Test
     public void testSum() {
         float[] arr = { 1.0f, 2.0f, 3.0f, 4.0f };
+        float[] arr1 = {};
         assertEquals(5.0f, ArrayMethods.sum(arr, 1, 3), 0.01f);
         assertEquals(10.0f, ArrayMethods.sum(arr, 0, 4), 0.01f);
-        assertEquals(0.0f, ArrayMethods.sum(arr, 2, 2), 0.01f);
+        assertEquals(0.0f, ArrayMethods.sum(arr, 2, 2), 0.01f); 
+        assertEquals(0.0f, ArrayMethods.sum(arr1), 0.01f);
+
     }
 
     @Test
     public void testMean() {
         float[] arr = { 1.0f, 2.0f, 3.0f, 4.0f };
-        float[] arr1 = { 1.0f, -9999.0f, 3.0f, 2.0f };
+        float[] arr2 = { 1.0f, -9999.0f, 3.0f, 2.0f };
         boolean[] output1 = { true, false, true, true };
-        float[] arr2 = {};
+        float[] arr3 = {};
         assertEquals(3.5f, ArrayMethods.mean(arr, 2, 4), 0.01f);
         assertEquals(2.5f, ArrayMethods.mean(arr, 0, 4), 0.01f);
-        //assertEquals(2.5f, ArrayMethods.mean(arr, 1, 3), 0.01f);
-        assertEquals(2.0f, ArrayMethods.mean(arr1, output1, 0, 4), 0.01f);
-        assertEquals(0.0f, ArrayMethods.mean(arr2, 0, 4), 0.01f);
+        assertEquals(2.5f, ArrayMethods.mean(arr), 0.01f);
+        assertEquals(2.0f, ArrayMethods.mean(arr2, output1, 0, 4), 0.01f);
+        assertEquals(0.0f, ArrayMethods.mean(arr3, 0, 4), 0.01f);
 
     }
+    
+    @Test
+    public void testMean2() {
+    float[] arr1 = { 1.0f, -9999.0f, 3.0f, 2.0f };
+    assertEquals(2.0f, ArrayMethods.mean2(arr1), 0.01f);
+        
+    }
+
+        
+
 
     @Test
     public void testMin() {
         float[] arr = { 1.0f, 3.0f, 2.0f, 4.0f };
-        //float[] arr1 = {};
+        float[] arr1 = {};
         assertEquals(2.0f, ArrayMethods.min(arr, 1, 4), 0.01f);
         assertEquals(1.0f, ArrayMethods.min(arr, 0, 4), 0.01f);
-        //assertEquals(Float.NaN, ArrayMethods.min(arr1,0,0),0.01f);
+        assertEquals(Float.NaN, ArrayMethods.min(arr1),0.01f);
 
 
     }
@@ -58,8 +72,10 @@ public class ArrayMethodsTest {
     public void testMax() {
         float[] arr = { 1.0f, 3.0f, 2.0f, 4.0f };
         float[] arr1 = { 1.0f, 3.0f, 2.0f };
+        float[] arr2 = {};
         assertEquals(4.0f, ArrayMethods.max(arr, 1, 4), 0.01f);
         assertEquals(3.0f, ArrayMethods.max(arr1, 0, 3), 0.01f);
+        assertEquals(Float.NaN, ArrayMethods.max(arr2), 0.01f);
 
     }
     
@@ -86,8 +102,21 @@ public class ArrayMethodsTest {
     public void testIsGreaterThan() {
         float[] input = { 1.0f, 2.0f, 3.0f, 2.5f };
         boolean[] output = { false, false, true, false };
+        float[] input1 = { 1.0f, 2.0f, 4.0f, 1.0f };
+        boolean[] output1 = { false, false, false, false };
         assertArrayEquals(output, ArrayMethods.isGreaterThan(input, 2.5f));
+        assertArrayEquals(output1, ArrayMethods.isGreaterThan(input1, 4.0f));
     }
+
+    @Test
+    public void datesBetween() {
+        String[] arr = { "20230101", "20230214", "20230704" };
+        boolean[] output = { false, true, false };
+        assertArrayEquals(output, ArrayMethods.datesBetween(arr, "20230201", "20230601"));
+
+    }
+
+
 
     
 }

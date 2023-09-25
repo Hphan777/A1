@@ -19,11 +19,12 @@ public class ReadFile {
       String date = fields[1];
       float temperature = Float.valueOf(fields[8]);
       System.out.println(" " + date + " the temperature was " + temperature + " degrees Celsius.");
+
     }
 
-    
+  
+  }
 
 
     //file.close();
   }
-}
