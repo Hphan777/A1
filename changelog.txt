@@ -1,0 +1,13 @@
+
+Mean method: add if statement to handle empty Arrays
+
+min/max method: added input validation 
+
+lowest/highest method: method implemented but fails one grading test particulary when k is over the range 
+
+Missing data: I already did the methods, but you mentioned that you didn't see where the methods are happening,
+but to let you know if you have missed something. For the missing data methods, I did isEqualTo, logicalNot, and mean2 which could filter
+the dataset. 
+
+
+

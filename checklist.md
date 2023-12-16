@@ -13,13 +13,13 @@ Assignment Points:
 
 ___YES__ 1 pt: `wholeArraySum` written & tested
 
-___PART__ 1 pt: `sum` written and tested (all versions)
+___YES__ 1 pt: `sum` written and tested (all versions)
 
 ___YES__ 1 pt: `mean` written and tested
 
 ___YES__ 1 pt: `min` and `max` written and tested
 
-___NO__ 1 pt: `lowest` and `highest` written and tested
+___YES__ 1 pt: `lowest` and `highest` written and tested
 
 ___PART__ 1 pts: data read from file into array of float
 

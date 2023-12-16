@@ -2,6 +2,10 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
+
 
 
 
@@ -18,7 +22,7 @@ public class ArrayMethodsTest {
         assertEquals(0.0f, ArrayMethods.wholeSum(arr2), 0.01f);
         float[] arr3 = { 1.0f, 2.0f, 3.0f };
         assertEquals(6.0f, ArrayMethods.wholeSum(arr3), 0.01f);
-        float[] arr4 = {-2.0f};
+        float[] arr4 = { -2.0f };
         assertEquals(-2.0f, ArrayMethods.wholeSum(arr4), 0.01f);
     }
 
@@ -28,7 +32,7 @@ public class ArrayMethodsTest {
         float[] arr1 = {};
         assertEquals(5.0f, ArrayMethods.sum(arr, 1, 3), 0.01f);
         assertEquals(10.0f, ArrayMethods.sum(arr, 0, 4), 0.01f);
-        assertEquals(0.0f, ArrayMethods.sum(arr, 2, 2), 0.01f); 
+        assertEquals(0.0f, ArrayMethods.sum(arr, 2, 2), 0.01f);
         assertEquals(0.0f, ArrayMethods.sum(arr1), 0.01f);
 
     }
@@ -46,16 +50,13 @@ public class ArrayMethodsTest {
         assertEquals(0.0f, ArrayMethods.mean(arr3, 0, 4), 0.01f);
 
     }
-    
+
     @Test
     public void testMean2() {
-    float[] arr1 = { 1.0f, -9999.0f, 3.0f, 2.0f };
-    assertEquals(2.0f, ArrayMethods.mean2(arr1), 0.01f);
-        
+        float[] arr1 = { 1.0f, -9999.0f, 3.0f, 2.0f };
+        assertEquals(2.0f, ArrayMethods.mean2(arr1), 0.01f);
+
     }
-
-        
-
 
     @Test
     public void testMin() {
@@ -63,11 +64,11 @@ public class ArrayMethodsTest {
         float[] arr1 = {};
         assertEquals(2.0f, ArrayMethods.min(arr, 1, 4), 0.01f);
         assertEquals(1.0f, ArrayMethods.min(arr, 0, 4), 0.01f);
-        assertEquals(Float.NaN, ArrayMethods.min(arr1),0.01f);
-
+        assertEquals(Float.NaN, ArrayMethods.min(arr, 2, 2), 0.01f);
+        assertEquals(Float.NaN, ArrayMethods.min(arr1), 0.01f);
 
     }
-    
+
     @Test
     public void testMax() {
         float[] arr = { 1.0f, 3.0f, 2.0f, 4.0f };
@@ -75,11 +76,10 @@ public class ArrayMethodsTest {
         float[] arr2 = {};
         assertEquals(4.0f, ArrayMethods.max(arr, 1, 4), 0.01f);
         assertEquals(3.0f, ArrayMethods.max(arr1, 0, 3), 0.01f);
+        assertEquals(Float.NaN, ArrayMethods.max(arr, 2, 2), 0.01f);
         assertEquals(Float.NaN, ArrayMethods.max(arr2), 0.01f);
 
     }
-    
-
 
     @Test
     public void testIsEqualTo() {
@@ -98,7 +98,8 @@ public class ArrayMethodsTest {
         boolean[] output = { true, false, true, true };
         assertArrayEquals(output, ArrayMethods.logicalNot(input));
     }
-    @Test 
+
+    @Test
     public void testIsGreaterThan() {
         float[] input = { 1.0f, 2.0f, 3.0f, 2.5f };
         boolean[] output = { false, false, true, false };
@@ -116,10 +117,63 @@ public class ArrayMethodsTest {
 
     }
 
+    @Test
+    public void testLowest() {
+        float[] arr1 = { 1.0f, 3.0f, 2.0f, 4.0f };
+        float[] arr2 = { 2.0f, 3.0f, 2.0f, 3.0f };
+        float[] arr3 = { 4.0f, 3.0f, 2.0f, 1.0f };
+        //float[] arr4 = { 4.0f, 3.0f };
+        float[] output = { 1.0f, 2.0f };
+        float[] output1 = { 2.0f, 2.0f, 3.0f };
+        float[] output3 = { 1.0f };
+        //float[] output4 = { 4.0f, 3.0f, Float.NaN};
+
+        assertArrayEquals(output, ArrayMethods.lowest(arr1, 0, 4, 2), 0.01f);
+        assertArrayEquals(output1, ArrayMethods.lowest(arr2, 0, 4, 3), 0.01f);
+        assertArrayEquals(output, ArrayMethods.lowest(arr3, 2), 0.01f);
+        assertArrayEquals(output3, ArrayMethods.lowest(arr3, 1), 0.01f);
+        //assertArrayEquals(output4, ArrayMethods.lowest(arr4, 3), 0.01f);
+
+    }
+
+    @Test
+    public void testHighest() {
+        float[] arr1 = { 1.0f, 3.0f, 2.0f, 4.0f };
+        float[] arr2 = { 2.0f, 3.0f, 2.0f, 3.0f };
+        float[] arr3 = { 4.0f, 3.0f, 2.0f, 1.0f };
+        //float[] arr4 = { 4.0f, 3.0f };
+        float[] output = { 3.0f, 4.0f };
+        float[] output1 = { 3.0f, 3.0f, 2.0f };
+        float[] output3 = { 4.0f };
+        //float[] output4 = { 4.0f, 3.0f, Float.NaN };
+
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        Arrays.sort(arr3);
+        Arrays.sort(output1);
+        Arrays.sort(output);
+        Arrays.sort(output3);
+
+
+
+        assertArrayEquals(output1, ArrayMethods.highest(arr2, 0, 4, 3), 0.01f);
+        assertArrayEquals(output, ArrayMethods.highest(arr3, 2), 0.01f);
+        assertArrayEquals(output3, ArrayMethods.highest(arr3, 1), 0.01f);
+        //assertArrayEquals(output4, ArrayMethods.highest(arr4, 3), 0.01f);
+        assertArrayEquals(output, ArrayMethods.highest(arr1, 0, 4, 2), 0.01f);
+
+
+    }
+
+
+}
 
 
     
-}
+
+
+
+
 
 
 
